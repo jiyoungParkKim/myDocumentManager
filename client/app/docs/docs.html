@@ -1,0 +1,108 @@
+<script>
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/html");
+    editor.commands.addCommand({
+	    name: 'saveCommand',
+	    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+	    exec: function(editor) {
+	    	angular.element(document.getElementById('editor')).scope().saveNode();
+	    },
+	    readOnly: false // false if this command should not apply in readOnly mode
+	});
+</script>
+<style type="text/css">
+	#editor { position: relative; margin-top: 0px; height: 520px; }
+    #htmlViewer { margin-top: 0px; }
+	.ace-chrome .ace_gutter {
+		border-left: 2px dashed rgba(200,200,200,0.2);
+		background: none;
+	}
+	.ace-chrome {
+		font-size: 11pt; // -- not 'px', but 'pt' for high dpi screens
+	}
+
+    treecontrol.tree-classic li .tree-selected.c-labelSelected {background-color: #2F4F4F}
+    treecontrol.tree-classic li .tree-label.c-label {color: #ffffff}
+ </style>
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="docContainer">
+
+<!-- TOOL BAR -->
+<div class="row">
+	<!-- ====================== LEFT TOOLBAR ===================== -->
+	<div class="col-md-4" style="height:50px; padding-top:3px; padding-bottom:3px; padding-right:0px" align="right" valign="bottom" ng-show="isTreeOn">
+		<!-- Create new node -->
+		<input type="text" ng-model="newNodeName" placeholder="New node" />
+		
+			<button type="button" class="btn btn-default btn-xs" ng-click="createNode('folder')">
+				<span class="glyphicon glyphicon-folder-close">New Folder</span></button>
+			<button type="button" class="btn btn-default btn-xs" ng-click="createNode('file')">
+				<span class="glyphicon glyphicon-file">New File</span></button>
+		
+		<!-- File Delete button -->
+		<button ng-show="selectedNode" type="button" class="btn btn-default btn-xs" ng-click="removeNode()">
+			<span class="glyphicon glyphicon-trash">Delete</span>
+		</button>
+	</div>
+
+	<!-- ===================== RIGHT TOOLBAR ================ -->
+    <div class="col-md-8 White" style="height:50px; padding-top:6px; padding-bottom:3px" name="tree" ng-show="selectedNode.type === 'file'">
+    	<!-- Toggle tree button -->
+		<button 
+			class = "btn btn-default btn-xs" 
+		 	ng-click="isTreeOn = !isTreeOn">Tree {{ isTreeOn ? 'off' : 'on' }}</button>
+
+		<!-- Toggle editor button -->
+  		<button  
+			class="btn btn-default btn-xs" 
+			ng-click="changeCurrentEditor()">
+			<span class="glyphicon glyphicon-edit" ng-if="!isEditorOn">Editor</span>
+			<span class="glyphicon glyphicon-eye-open" ng-if="isEditorOn">HtmlViewer</span></button>
+
+		<!-- File Save button -->
+		<button type="button" class="btn btn-default btn-xs" ng-click="saveNode()">
+			<span class="glyphicon glyphicon-ok"></span> Save
+		</button> 
+
+		<!-- reset -->
+		<button type="button" class="btn btn-default btn-xs" ng-click="reset()"  ng-if="selectedNode.type === 'file'">Reset</button>
+		<!-- symboles -->
+		<button type="button" class="btn btn-default btn-xs"  ng-repeat="s in symbols" ng-show="isEditorOn" ng-click="addSymbol(s.value)" >{{s.value}}</button>
+		
+		<!-- tags -->
+		<button type="button" class="btn btn-default btn-xs"   ng-repeat="s in tagsWithoutClass" ng-click="addTagsWithoutClass(s)" >{{s.name}}</button>
+
+		<!-- palettes -->
+		<div style="margin-right:10px; margin-top:2px;">
+		marks: <button type="button" ng-repeat="c in colors | filter:{favorate:true}" class="btn palette_mark _{{c.name}}" style="border-color: #D3D3D3" ng-click="setMark(c.name)"></button>
+		blocks: <button type="button" ng-repeat="c in colors | filter:{favorate:true}" class="btn palette_box _{{c.name}}" style="border-color: #D3D3D3" ng-click="setBlock(c.name)"></button></div>
+    </div>
+</div>
+
+<div class="row">
+	<!-- ==================== TREE =================== -->
+	<div class="col-lg-4" name="main" style="padding-right:0px">
+		<div class="box site-wrapper" ng-show="isTreeOn" style="margin-left:10px; margin-top:3px; padding-right:0px; ">
+			<treecontrol 
+				id="tree"
+				class="tree-classic " 
+				style="background-color:red"
+				tree-model="treedata" 
+				on-selection="selectNode(node)"
+				selected-node="selectedNode"
+				expanded-nodes="expandedNodes"
+				options="opts">{{node.name}}</treecontrol>
+		</div>
+	</div>
+
+	<!-- ==================== DOCUMENT ===================== -->
+		<div ng-class="{'col-lg-8': isTreeOn, 'col-lg-12': !isTreeOn}"  name="documant" ng-show="selectedNode.type === 'file'">
+			<div id="editor" class="box panel panel-default " style="margin-right:10px; margin-top:3px;" ng-show="isEditorOn" ></div>
+			<div id="htmlViewer" class="box panel panel-default _White" style="margin-right:10px; margin-top:3px;" ng-show="!isEditorOn" ></div>
+	</div>
+</div><!-- //row -->
+
+</div>

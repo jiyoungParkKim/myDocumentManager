@@ -6,7 +6,7 @@ client/bower_components
 dist
 .project
 .settings/
-docs/
+/docs
 npm-debug.log
 .externalToolBuilders/
 

@@ -1,0 +1,23 @@
+
+
+
+
+
+    .palette_mark {
+	    width: 20px;
+	    height:20px;
+	    margin: 1px;
+	    padding: 0px;
+	}
+	.palette_box {
+	    width: 30px;
+	    height:20px;
+	    margin: 1px;
+	    padding: 0px;
+	}
+	// Classes
+	.center-block {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
