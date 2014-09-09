@@ -1,0 +1,50 @@
+
+<style type="text/css">
+html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+</style>
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="site-wrapper">
+	<div class="site-wrapper-inner">
+
+		<div class="cover-container">
+			<div class="inner cover">
+				<div class="row">
+					<h1 class="cover-heading">Document Roots</h1>
+					<p class="lead">
+						<div class="box _MistyRose col-md-8 col-md-offset-2">	
+							<ul class="list-group">
+							<li class="list-group-item box col-md-4 col-lg-4 col-sm-4 _DarkGray2" ng-repeat="docRoot in docRoots">
+								<a href="/docs/{{docRoot.label}}" >{{docRoot.label}}</a>
+								<button type="button" class="close" ng-click="deleteRoot(docRoot)">&times;</button>
+							</li>
+							</ul>
+						</div>           	
+					</p>            
+				</div>
+				<br>
+				<form class="form-inline" role="form">
+					<input type="text" ng-model="newRootName" name="rootName" class="form-control" placeholder="Root Name" >
+					<a ng-click="addNewRoot()" class="btn btn-default">Document Roots</a>
+				</form>
+
+				<div class="mastfoot">
+					<div class="inner">
+						<p>Document management tool by Jiyoung Park.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,6 @@
+<!-- Tree Show Hide button -->
+<any ng-controller="DocsCtrl" >
+<!-- marks -->
+<div ng-if="selectedNode.type === 'file'">marks: <button type="button" ng-repeat="c in colors | filter:{favorate:true}" class="btn palette_mark _{{c.name}}" style="border-color: #D3D3D3" ng-click="setMark(c.name)"></button>
+blocks: <button type="button" ng-repeat="c in colors | filter:{favorate:true}" class="btn palette_box _{{c.name}}" style="border-color: #D3D3D3" ng-click="setBlock(c.name)"></button></div>
+</any>

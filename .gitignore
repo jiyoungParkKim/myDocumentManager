@@ -1,0 +1,12 @@
+node_modules
+public
+.tmp
+.idea
+client/bower_components
+dist
+.project
+.settings/
+docs/
+npm-debug.log
+.externalToolBuilders/
+

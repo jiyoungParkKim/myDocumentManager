@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="no-js">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-tree-control/css/tree-control.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
+    <link rel="stylesheet" href="bower_components/angular-tree-control/css/tree-control-attribute.css">
+    <!-- endbower -->
+    <link rel="stylesheet" href="app/app.css">
+    <link rel="stylesheet" href="app/cover.css">
+    <link rel="stylesheet" href="app/docs/docs.css">
+</head>
+<body ng-app="myDocumentManagerApp">
+
+<div ui-view=""></div>
+
+
+<script src="socket.io/socket.io.js"></script>
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/ace-builds/src/ace.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-socket-io/socket.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/nvd3/nv.d3.js"></script>
+<script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
+<script src="bower_components/angular-tree-control/angular-tree-control.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,client}) app/app.js -->
+<script src="app/app.js"></script>
+<!-- injector:js -->
+<script src="app/docs/docs.controller.js"></script>
+<script src="app/docs/docs.js"></script>
+<script src="app/docs/docs.service.js"></script>
+<script src="app/docs/docs.tool.js"></script>
+<script src="app/main/main.controller.js"></script>
+<script src="app/main/main.js"></script>
+<script src="components/navbar/navbar.controller.js"></script>
+<script src="components/socket/socket.service.js"></script>
+
+          
+</body>
+</html>

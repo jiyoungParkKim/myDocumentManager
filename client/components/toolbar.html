@@ -1,0 +1,18 @@
+<!-- Tree Show Hide button -->
+<any ng-controller="DocsCtrl" >
+
+
+
+<!-- File Save button -->
+<button type="button" class="btn btn-default btn-xs" ng-show="selectedNode.type === 'file'" ng-click="saveNode()">
+	<span class="glyphicon glyphicon-ok"></span>
+</button>
+
+<!-- reset -->
+<button type="button" class="btn btn-xs" ng-click="reset()"  ng-if="selectedNode.type === 'file'">reset</button>
+<!-- symboles -->
+<button type="button" ng-repeat="s in specials" ng-click="addSpecialMark(s.value)" ng-if="isEditorOn">{{s.value}}</button>
+
+<!-- tags -->
+<button type="button" ng-repeat="s in specialtags2" ng-click="addSpecialTag(s)" ng-if="selectedNode.type === 'file'">{{s.name}}</button>
+</any>
