@@ -7,7 +7,6 @@ angular.module('myDocumentManagerApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'nvd3ChartDirectives',
   'treeControl'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {

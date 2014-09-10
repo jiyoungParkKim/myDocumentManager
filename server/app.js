@@ -8,23 +8,11 @@ var fs = require('fs');
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
-var mongoose = require('mongoose');
 global.config = require('./config/environment');
-
 
 if(!fs.existsSync(global.config.docRoot)){
 	fs.mkdir(global.config.docRoot, function(err){});
 }
-
-
-//console.log(process.env.NODE_ENV)
-//console.log("config.mongo.uri : " + config.mongo.uri);
-//console.log("config.mongo.options : " + config.mongo.options);
-//console.log("config.port : " + config.port);
-//console.log("config.ip : " + config.ip);
-
-//Connect to database
-//mongoose.connect(config.mongo.uri, config.mongo.options);
 
 //Setup server
 var app = express();
