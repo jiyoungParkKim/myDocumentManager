@@ -22,14 +22,16 @@
     "socket.io": "~1.0.6",
     "socketio-jwt": "^2.0.2",
     "static-favicon": "~1.0.1",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "bower": "latest"
   },
-  "devDependencies": {},
+  "devDependencies": {"bower": "latest"},
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "node server/app.js"
+    "start": "node server/app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "private": true
 }
