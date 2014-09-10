@@ -1,0 +1,6 @@
+{
+  "name": "My Document Manager",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com/jiyoungParkKim/myDocumentManager",
+  "keywords": ["node", "express", "static"]
+}
