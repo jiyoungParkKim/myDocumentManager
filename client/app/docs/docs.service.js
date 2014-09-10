@@ -41,7 +41,7 @@ app.service('docService', function(){
 	//////////////// CRUD TREE NODES ///////////////////////////
 
 
-	this.createNode = function($scope, $http, type){
+	this.createNode = function($scope, $http, type, callback){
 		var node = {
 			'name':$scope.newNodeName, 
 			'path':$scope.selectedNode.path + '/' + $scope.newNodeName, 
@@ -49,21 +49,10 @@ app.service('docService', function(){
 		
 		$http.post('/api/docs', node )
 		.success(function (data) {
-			if($scope.selectedNode != $scope.docRoot)
-			$scope.expandedNodes.push($scope.selectedNode)
-       	
-	       	if(!angular.isArray($scope.selectedNode.children))
-	       		$scope.selectedNode.children = [];
-
-	   		$scope.selectedNode.children.push(data);	   		
-	   		$scope.selectedNode = data;
-
-	   		$scope.newNodeName = '';
-
-	   		//addAlert($scope, data.name + " is created");
+			callback(null, data);
        	
         }).error(function (err) {
-       		addErrAlert($scope, err);
+       		callback(err, null);
         });
 	};
 

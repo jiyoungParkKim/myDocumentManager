@@ -1,40 +1,14 @@
 angular.module('myDocumentManagerApp')
 .controller('DocsCtrl', function ($scope, $http, $stateParams, $modal, docService, tools) {
 
-
-	///////////// tools ///////////////////////
-
-	// default editor is htmlViewer
-	$scope.isEditorOn = false;
-
-	tools.init($scope, editor, htmlViewer);
-
-	$scope.changeCurrentEditor = function(){
-		$scope.isEditorOn = !$scope.isEditorOn;
-		tools.changeCurrentEditor($scope);
+	$scope.getCurrentScope = function(){
+		return $scope;
 	};
 
-	$scope.addTagsWithoutClass = function(tag){
-		tools.addTagsWithoutClass($scope, tag);
+	$scope.showBottomToolbar = function(){
+		return editor.session.getLength() > 20;
 	};
 
-	$scope.setMark = function(color){
-		tools.addTagsWithClass($scope, $scope.tagsWithClass[0], color);	
-	};
-	
-	$scope.setBlock = function(color){
-		tools.addTagsWithClass($scope, $scope.tagsWithClass[1], color);	
-	};
-
-	$scope.addSymbol = function(s){
-		editor.insert(' ' + s + ' ');
-	};
-
-	$scope.reset = function(){
-		tools.reset($scope);
-	}
-
-	
 	// tree //////////////////////////////////
 	$scope.opts = {
 		injectClasses: {
@@ -50,6 +24,7 @@ angular.module('myDocumentManagerApp')
 	};
      
 	$scope.isTreeOn = true;
+
 	$scope.treedata = {
 		name:$stateParams.docRoot, 
 		path:$stateParams.docRoot, 
@@ -62,16 +37,39 @@ angular.module('myDocumentManagerApp')
 		$scope.selectedNode = sel;
 		if($scope.selectedNode.type === 'file'){
 			docService.readFile($http, $scope.selectedNode.path, function(err, content){
-
-				$scope.content = content;
-				$scope.HTML_VIEWER.setValue(content);
-				$scope.ACE_EDITOR.setValue(content);
+				if(err) handleErr(err);
+				else{
+					$scope.content = content;
+					$scope.HTML_VIEWER.setValue(content);
+					$scope.ACE_EDITOR.setValue(content);
+				}
 			});
 		}
     };
    
 	$scope.createNode = function(type){
-		docService.createNode($scope, $http, type);
+		docService.createNode($scope, $http, type, function(err, newNode){
+			if(err) handleErr(err);
+			else{
+
+				if($scope.selectedNode != $scope.docRoot)
+					$scope.expandedNodes.push($scope.selectedNode)
+	       	
+		       	if(!angular.isArray($scope.selectedNode.children))
+		       		$scope.selectedNode.children = [];
+
+		   		$scope.selectedNode.children.push(newNode);	   		
+		   		$scope.selectedNode = newNode;
+
+		   		$scope.newNodeName = '';
+
+		   		$scope.content = '';
+		   		$scope.reset();
+		   		$scope.isEditorOn = true;
+
+		   		//addAlert($scope, data.name + " is created");
+			}
+		});
 	};
 
 	$scope.removeNode = function(){
@@ -87,10 +85,11 @@ angular.module('myDocumentManagerApp')
 		docService.saveNode($scope, $http, function(err, msg){
 			console.log(msg);
 		});
-	};
-	
+	};	
 
-
+	function handleErr(err){
+		console.log(err);
+	}
 
 });
 

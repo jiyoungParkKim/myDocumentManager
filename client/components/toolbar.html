@@ -1,18 +1,32 @@
-<!-- Tree Show Hide button -->
-<any ng-controller="DocsCtrl" >
+	<!-- ===================== RIGHT TOOLBAR ================ -->
+    <div class="col-md-9 White" style="height:50px; padding-top:6px; padding-bottom:3px" name="tree" ng-show="selectedNode.type === 'file'">
+    	<!-- Toggle tree button -->
+		<button 
+			class = "btn btn-default btn-xs" 
+		 	ng-click="toogleTree()">Tree {{ isTreeOn ? 'off' : 'on' }}</button>
 
+		<!-- Toggle editor button -->
+  		<button  
+			class="btn btn-default btn-xs" 
+			ng-click="changeCurrentEditor()">
+			<span class="glyphicon glyphicon-edit" ng-if="!isEditorOn">Editor</span>
+			<span class="glyphicon glyphicon-eye-open" ng-if="isEditorOn">HtmlViewer</span></button>
 
+		<!-- File Save button -->
+		<button type="button" class="btn btn-default btn-xs" ng-click="saveNode()">
+			<span class="glyphicon glyphicon-ok"></span> Save
+		</button> 
 
-<!-- File Save button -->
-<button type="button" class="btn btn-default btn-xs" ng-show="selectedNode.type === 'file'" ng-click="saveNode()">
-	<span class="glyphicon glyphicon-ok"></span>
-</button>
+		<!-- reset -->
+		<button type="button" class="btn btn-default btn-xs" ng-click="reset()"  ng-if="selectedNode.type === 'file'">Reset</button>
+		<!-- symboles -->
+		<button type="button" class="btn btn-default btn-xs"  ng-repeat="s in symbols" ng-show="isEditorOn" ng-click="addSymbol(s.value)" >{{s.value}}</button>
+		
+		<!-- tags -->
+		<button type="button" class="btn btn-default btn-xs"   ng-repeat="s in tagsWithoutClass" ng-click="addTagsWithoutClass(s)" >{{s.name}}</button>
 
-<!-- reset -->
-<button type="button" class="btn btn-xs" ng-click="reset()"  ng-if="selectedNode.type === 'file'">reset</button>
-<!-- symboles -->
-<button type="button" ng-repeat="s in specials" ng-click="addSpecialMark(s.value)" ng-if="isEditorOn">{{s.value}}</button>
-
-<!-- tags -->
-<button type="button" ng-repeat="s in specialtags2" ng-click="addSpecialTag(s)" ng-if="selectedNode.type === 'file'">{{s.name}}</button>
-</any>
+		<!-- palettes -->
+		<div style="margin-right:10px; margin-top:2px;">
+		marks: <button type="button" ng-repeat="c in colors | filter:{favorate:true}" class="btn palette_mark _{{c.name}}" style="border-color: #D3D3D3" ng-click="setMark(c.name)"></button>
+		blocks: <button type="button" ng-repeat="c in colors | filter:{favorate:true}" class="btn palette_box _{{c.name}}" style="border-color: #D3D3D3" ng-click="setBlock(c.name)"></button></div>
+    </div>

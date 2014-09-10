@@ -4,14 +4,14 @@
 
 
     .palette_mark {
-	    width: 20px;
-	    height:20px;
+	    width: 15px;
+	    height:15px;
 	    margin: 1px;
 	    padding: 0px;
 	}
 	.palette_box {
-	    width: 30px;
-	    height:20px;
+	    width: 20px;
+	    height:15px;
 	    margin: 1px;
 	    padding: 0px;
 	}

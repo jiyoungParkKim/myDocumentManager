@@ -64,7 +64,7 @@ function createNode(node){
 		fs.mkdirSync(itemPath);
 		node.children = {};
 	}else if(node.type === 'file') {
-		fs.writeFileSync(itemPath, '<pre></pre>');
+		fs.writeFileSync(itemPath, '');
 		node.children = [];
 	}
 	return node;
