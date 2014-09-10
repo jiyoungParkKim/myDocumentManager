@@ -8,7 +8,6 @@
     "bson": "^0.2.12",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
-    "connect-mongo": "^0.4.1",
     "cookie-parser": "~1.0.1",
     "ejs": "~0.8.4",
     "errorhandler": "~1.0.0",
@@ -16,7 +15,6 @@
     "express-session": "~1.0.2",
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
-    "mongoose": "~3.8.8",
     "morgan": "~1.0.0",
     "request": "^2.40.0",
     "socket.io": "~1.0.6",
@@ -31,7 +29,7 @@
   },
   "scripts": {
     "start": "node server/app.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "node ./node_modules/bower/bin/bower install"
   },
   "private": true
 }
