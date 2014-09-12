@@ -16,7 +16,8 @@ $npm start
 
 
 ## Heroku
-[Demo](http://rocky-dawn-7072.herokuapp.com/)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 
 ## Screen Shots
 
