@@ -42,7 +42,8 @@ exports.destroyRoot = function(req, res){
 		if(err) { return handleError(res, err); }
 		service.dirToExplore.length = 0;
 		service.reloadRoot();
-		_socket.emit('docs:remove', newNode);
+		if(_socket != null)
+			_socket.emit('docs:remove', newNode);
 		return res.json(newNode);
 	});
 };
@@ -64,7 +65,8 @@ exports.save = function(req, res){
 exports.newRoot = function(req, res){
 	service.newRoot(req.body, function(err, newRoots){
 		if(err) { return handleError(res, err); }
-		_socket.emit('docs:save', newRoots);
+		if(_socket != null)
+			_socket.emit('docs:save', newRoots);
 		return res.json(newRoots);
 	});
 };
