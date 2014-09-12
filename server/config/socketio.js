@@ -51,7 +51,7 @@ module.exports = function (socketio) {
 
   socketio.on('connection', function (socket) {
     try{
-
+      console.log(socket)
       socket.address = socket.handshake.address.address + ':' +
                        socket.handshake.address.port;
       socket.connectedAt = new Date();
