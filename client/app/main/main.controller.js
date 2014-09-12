@@ -6,8 +6,9 @@ angular.module('myDocumentManagerApp')
     $scope.newDirectory = '';
   	$scope.docRoots = [];
     
-    docService.loadDocRoots($http, socket, function(err, docRoots){
-        $scope.docRoots = docRoots;
+    $http.get('/api/docs').success(function(docRoots) {
+      socket.syncUpdates('docs', docRoots);
+      $scope.docRoots = docRoots;
     });
 
 	  $scope.addNewRoot = function(){
