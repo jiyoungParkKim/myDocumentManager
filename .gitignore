@@ -8,4 +8,5 @@ dist
 .settings/
 npm-debug.log
 .externalToolBuilders/
+/docs
 

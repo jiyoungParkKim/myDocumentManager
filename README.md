@@ -14,8 +14,6 @@ $npm start
  * angular-tree-control: https://github.com/wix/angular-tree-control
  * ace editor: https://github.com/ajaxorg/ace
 
-## Heroku
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Screen Shots
 

@@ -24,6 +24,8 @@ angular.module('myDocumentManagerApp')
 	};
      
 	$scope.isTreeOn = true;
+	$scope.isMenuOn = true;
+	
 
 	$scope.treedata = {
 		name:$stateParams.docRoot, 

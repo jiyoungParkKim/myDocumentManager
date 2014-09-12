@@ -40,6 +40,11 @@ angular.module('myDocumentManagerApp')
 			scope.isTreeOn = !scope.isTreeOn;
 		};
 
+		$scope.toogleMenu = function(){
+			scope.isMenuOn = !scope.isMenuOn;
+		};
+
+
 	}
 
 });

@@ -6,6 +6,8 @@
 
 var config = require('./environment');
 
+
+
 // When the user disconnects.. perform this
 function onDisconnect(socket) {
 }
@@ -38,19 +40,34 @@ module.exports = function (socketio) {
   //   handshake: true
   // }));
 
+
+    socketio.set('transports', ['websocket', 
+                  'flashsocket', 
+                  'htmlfile', 
+                  'xhr-polling', 
+                  'jsonp-polling', 
+                  'polling']);
+
+
   socketio.on('connection', function (socket) {
-    socket.address = socket.handshake.address.address + ':' +
-                     socket.handshake.address.port;
-    socket.connectedAt = new Date();
+    try{
 
-    // Call onDisconnect.
-    socket.on('disconnect', function () {
-      onDisconnect(socket);
-      console.info('[%s] DISCONNECTED', socket.address);
-    });
+      socket.address = socket.handshake.address.address + ':' +
+                       socket.handshake.address.port;
+      socket.connectedAt = new Date();
 
-    // Call onConnect.
-    onConnect(socket);
-    console.info('[%s] CONNECTED', socket.address);
+      // Call onDisconnect.
+      socket.on('disconnect', function () {
+        onDisconnect(socket);
+        console.info('[%s] DISCONNECTED', socket.address);
+      });
+
+      // Call onConnect.
+      onConnect(socket);
+      console.info('[%s] CONNECTED', socket.address);
+      }catch(err){
+        console.log(err)
+      }
+    
   });
 };

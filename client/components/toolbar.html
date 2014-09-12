@@ -1,5 +1,11 @@
 	<!-- ===================== RIGHT TOOLBAR ================ -->
     <div class="col-md-9 White" style="height:50px; padding-top:6px; padding-bottom:3px" name="tree" ng-show="selectedNode.type === 'file'">
+
+   		<!-- Toggle tree button -->
+		<button 
+			class = "btn btn-default btn-xs" 
+		 	ng-click="toogleMenu()">Menu {{ isMenuOn ? 'off' : 'on' }}</button>
+
     	<!-- Toggle tree button -->
 		<button 
 			class = "btn btn-default btn-xs" 
