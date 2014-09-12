@@ -50,24 +50,20 @@ module.exports = function (socketio) {
 
 
   socketio.on('connection', function (socket) {
-    try{
-      console.log(socket)
-      socket.address = socket.handshake.address.address + ':' +
-                       socket.handshake.address.port;
-      socket.connectedAt = new Date();
 
-      // Call onDisconnect.
-      socket.on('disconnect', function () {
-        onDisconnect(socket);
-        console.info('[%s] DISCONNECTED', socket.address);
-      });
 
-      // Call onConnect.
-      onConnect(socket);
-      console.info('[%s] CONNECTED', socket.address);
-      }catch(err){
-        console.log(err)
-      }
-    
+    // socket.address = socket.handshake.address.address + ':' +
+    //                  socket.handshake.address.port;
+    socket.connectedAt = new Date();
+
+    // Call onDisconnect.
+    socket.on('disconnect', function () {
+      onDisconnect(socket);
+      //console.info('[%s] DISCONNECTED', socket.address);
+    });
+
+    // Call onConnect.
+    onConnect(socket);
+    //console.info('[%s] CONNECTED', socket.address);
   });
 };
