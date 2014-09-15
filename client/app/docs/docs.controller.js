@@ -34,18 +34,39 @@ angular.module('myDocumentManagerApp')
 	};
 
 	docService.loadTree($http, $scope);
-	
+
+	var doNotRead = ['jar','pdf','jpeg','png', 'doc'];
+
+	function getFileExtension(filename){
+	    var ext = /^.+\.([^.]+)$/.exec(filename);
+	    return ext == null ? "" : ext[1];
+	}
+
+	function canRead(name){
+		var ext = getFileExtension(name);
+		for(index in doNotRead){
+			if(doNotRead[index] === ext){
+				return false;
+			}
+		}
+		return true;
+	}
+
 	$scope.selectNode = function(sel) {
 		$scope.selectedNode = sel;
 		if($scope.selectedNode.type === 'file'){
-			docService.readFile($http, $scope.selectedNode.path, function(err, content){
-				if(err) handleErr(err);
-				else{
-					$scope.content = content;
-					$scope.HTML_VIEWER.setValue(content);
-					$scope.ACE_EDITOR.setValue(content);
-				}
-			});
+			if(canRead($scope.selectedNode.name)){
+				docService.readFile($http, $scope.selectedNode.path, function(err, content){
+					if(err) handleErr(err);
+					else{
+						$scope.content = content;
+						$scope.HTML_VIEWER.setValue(content);
+						$scope.ACE_EDITOR.setValue(content);
+					}
+				});				
+			}else{
+				console.log('cannot read this file');
+			}
 		}
     };
    
