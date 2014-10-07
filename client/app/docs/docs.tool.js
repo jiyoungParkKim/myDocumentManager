@@ -26,6 +26,7 @@ app.service('tools', function(){
 		$scope.tagsWithoutClass = tagsWithoutClass;	
 		$scope.symbols = symbols;	
 		$scope.colors = colors;	
+		$scope.htmlTags = htmlTags;
 
 		console.log($scope.ACE_EDITOR)
 		console.log($scope.HTML_VIEWER)
@@ -48,7 +49,8 @@ app.service('tools', function(){
 	function cvrtEditorToHtmlViewer(content){
 		return content
 	    	.replace(/[\n\r]/g, '<br>')
-	    	.replace(/    /g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+	    	.replace(/    /g, '&nbsp;&nbsp;&nbsp;&nbsp;')
+	    	.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
 	};
 
 
@@ -131,7 +133,8 @@ var tagsWithoutClass = [
     {name:"code",       left:"<code>", right:"</code>"},
     {name:"comment",    left:"<comment>", right:"</comment>"},
     {name:"pre",        left:"<pre>", right:"</pre>"},
-    {name:"bold",       left:"<strong>", right:"</strong>"}
+    {name:"bold",       left:"<strong>", right:"</strong>"},
+    {name:"<>",       left:"&lt;", right:"&gt;"}
 ];
 
 var symbols = [
@@ -143,6 +146,11 @@ var symbols = [
 	{value:"•"}, 
 	{value:"⋅"},
 	{value:"ο"}
+];
+
+var htmlTags = [
+	{tag:"img", value:"<img src=\"assets/images/docs/\"  width=\"550\">"},
+	{tag:"link", value:"<a href=\"\" target=\"_blank\"></a>"}
 ];
 
 /////// colors //////////////////

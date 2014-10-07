@@ -32,6 +32,10 @@ angular.module('myDocumentManagerApp')
 			editor.insert(s + ' ');
 		};
 
+		$scope.addHtmlTags = function(s){
+			editor.insert(s);
+		};
+
 		$scope.reset = function(){
 			tools.reset($scope);
 		}

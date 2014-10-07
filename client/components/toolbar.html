@@ -31,6 +31,9 @@
 		<!-- tags -->
 		<button type="button" class="btn btn-default btn-xs"   ng-repeat="s in tagsWithoutClass" ng-click="addTagsWithoutClass(s)" >{{s.name}}</button>
 
+		<!-- htmlTags -->
+		<button type="button" class="btn btn-default btn-xs"   ng-repeat="s in htmlTags" ng-click="addHtmlTags(s.value)" >{{s.tag}}</button>
+
 		<!-- palettes -->
 		<div style="margin-right:10px; margin-top:2px;">
 		marks: <button type="button" ng-repeat="c in colors | filter:{favorate:true}" class="btn palette_mark _{{c.name}}" style="border-color: #D3D3D3" ng-click="setMark(c.name)"></button>

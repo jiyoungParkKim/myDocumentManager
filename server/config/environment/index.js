@@ -42,9 +42,14 @@ mongo: {
 },
 
 
-docRoot : path.join(path.normalize(__dirname + '/../../..'),'docs')
+
+docRoot : path.join(path.normalize(__dirname + '/../../..'),'docs'),
+imgRoot : path.join(path.normalize(__dirname + '/../../..'),'client/assets/docs')
 
 };
+
+// console.log("__dirname : " + __dirname);
+// console.log("__dirname2 : " + path.join(path.normalize(__dirname + '/../../..'),'client/asserts'));
 
 //Export the config object based on the NODE_ENV
 //==============================================

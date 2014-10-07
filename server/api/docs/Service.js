@@ -6,6 +6,7 @@ var _ = require('lodash');
 
 var dirToExplore = [];
 var baseDir;
+var imgBaseDir;
 
 
 function reloadRoot(){
@@ -125,11 +126,16 @@ exports.newRoot = function(newRoot, callback){
 
 
 //initialization
+imgBaseDir = config.imgRoot;
 baseDir = config.docRoot;
 
 if(!fs.existsSync(baseDir)){
 	fs.mkdirSync(baseDir);
 	dirToExplore.push({});
+}
+
+if(!fs.existsSync(imgBaseDir)){
+	fs.mkdirSync(imgBaseDir);
 }
 
 reloadRoot();

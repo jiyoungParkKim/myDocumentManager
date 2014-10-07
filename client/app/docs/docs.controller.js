@@ -35,7 +35,7 @@ angular.module('myDocumentManagerApp')
 
 	docService.loadTree($http, $scope);
 
-	var doNotRead = ['jar','pdf','jpeg','png', 'doc'];
+	var doNotRead = ['jar','pdf','jpeg','png', 'doc', 'ppt'];
 
 	function getFileExtension(filename){
 	    var ext = /^.+\.([^.]+)$/.exec(filename);
